@@ -19,7 +19,7 @@ def test_get_list_size(builder_get, model_type):
 
 """Получение списка размеров сумок, некорректные данные"""
 @pytest.mark.parametrize("model_type", ['', '123', 'Gjdks', 123654, '_-/?%*'])
-def test_get_list_size_invalid(builder_get, model_type):
+def test_get_list_size_invalid_type(builder_get, model_type):
     status, result = builder_get.list_size(model_type)
     assert status == 404
     print(status)
