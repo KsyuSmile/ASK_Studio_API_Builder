@@ -21,7 +21,7 @@ def test_get_list_size(builder_get, model_type):
 @pytest.mark.parametrize("model_type", ['', '123', 'Gjdks', 123654, '_-/?%*'])
 def test_get_list_size_invalid_type(builder_get, model_type):
     status, result = builder_get.list_size(model_type)
-    assert status == 404
+    assert status == 400
     print(status)
 
 
@@ -51,6 +51,7 @@ def test_get_get_leather_mini(builder_get, model_type='leather', size='mini'):
     assert 'parameters' in result
     assert 'accessories' in result
     assert status == 200
+    print(result)
 
 
 def test_get_get_s_pinami_maxi(builder_get, model_type='osnova-s-pinami', size='maxi'):
@@ -78,6 +79,7 @@ def test_get_get_s_pinami_mini(builder_get, model_type='osnova-s-pinami', size='
     assert 'parameters' in result
     assert 'accessories' in result
     assert status == 200
+    print(result)
 
 
 def test_get_get_plastic_maxi(builder_get, model_type='plastic', size='maxi'):
@@ -141,7 +143,7 @@ def test_get_get_leather_invalid_size(builder_get, size, model_type='leather'):
     status, result = builder_get.get_bag(model_type, size)
     print(result)
     assert 'error' in result
-    assert status == 404
+    assert status == 400
 
 
 @pytest.mark.parametrize("size", ['', '649786', 'ipRthOjh', 123654, '?,@%(*'])
@@ -150,7 +152,7 @@ def test_get_get_plastic_invalid_size(builder_get, size, model_type='plastic'):
     status, result = builder_get.get_bag(model_type, size)
     print(result)
     assert 'error' in result
-    assert status != 200
+    assert status == 400
 
 
 @pytest.mark.parametrize("size", ['', '649786', 'ipRthOjh', 123654, '?,@%(*'])
@@ -159,7 +161,7 @@ def test_get_get_s_pinami_invalid_size(builder_get, size, model_type='osnova-s-p
     status, result = builder_get.get_bag(model_type, size)
     print(result)
     assert 'error' in result
-    assert status != 200
+    assert status == 400
 
 
 @pytest.mark.parametrize("size", ['', '649786', 'ipRthOjh', 123654, '?,@%(*'])
@@ -168,7 +170,7 @@ def test_get_get_mix_invalid_size(builder_get, size, model_type='plastic_and_lea
     status, result = builder_get.get_bag(model_type, size)
     print(result)
     assert 'error' in result
-    assert status != 200
+    assert status == 400
 
 
 @pytest.mark.parametrize("size", ['', '649786', 'ipRthOjh', 123654, '?,@%(*'])
@@ -177,7 +179,8 @@ def test_get_get_puffed_invalid_size(builder_get, size, model_type='steganaya-tk
     status, result = builder_get.get_bag(model_type, size)
     print(result)
     assert 'error' in result
-    assert status != 200
+    assert status == 400
+
 
 
 
