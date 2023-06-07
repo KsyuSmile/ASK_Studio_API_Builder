@@ -1,10 +1,14 @@
 import pytest
+import json
 
 
 """Получение списка моделей сумок"""
 def test_get_list_model(builder_get):
     status, result = builder_get.list_model()
-    print(result)
+    print(status)
+    for body_res in result:
+        print(body_res)
+    assert 'BuilderSize' in result # не проходит
     assert status == 200
 
 
@@ -12,9 +16,12 @@ def test_get_list_model(builder_get):
 @pytest.mark.parametrize("model_type", ['leather', 'osnova-s-pinami', 'plastic', 'plastic_and_leather', 'steganaya-tkan'])
 def test_get_list_size(builder_get, model_type):
     status, result = builder_get.list_size(model_type)
-    print(result['items'])
     assert 'items' in result
     assert status == 200
+    for body_res in result:
+        print(body_res)
+    for list_size in result['items']:
+        print(list_size)
 
 
 """Получение списка размеров сумок, некорректные данные"""
