@@ -8,7 +8,6 @@ def test_get_list_model(builder_get):
     print(status)
     for body_res in result:
         print(body_res)
-    # assert 'Builder' in result # не проходит
     assert status == 200
 
 
